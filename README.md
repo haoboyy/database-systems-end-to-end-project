@@ -1,61 +1,112 @@
-# End-to-End Data-Driven Database Application
+# Database Systems Final Project  
+End-to-End Data-Driven Application
 
-## Project Overview
-This project is the final project for **CSCI-GA.2433 Database Systems**.
-It implements an **end-to-end, data-driven database application** that integrates
-an OLTP/ODS relational database, unstructured data processing, and a machine
-learning–based analytics module to support business decision-making.
+## Overview
 
-The system demonstrates how insights derived from unstructured data are
-generated through a data-driven program module and integrated back into an
-operational database to support a workflow-based application.
+This project implements an end-to-end data-driven application for the Database Systems final project.  
+The system demonstrates how unstructured user requests are processed by a machine learning module, how insights are written back into an operational data store (ODS), and how the results are consumed by a workflow-based backend application.
 
-## End-to-End Architecture
-The solution follows a layered architecture consisting of:
-- Frontend (user interaction layer)
-- Application layer (database connectivity and workflow orchestration)
-- OLTP/ODS relational database
-- Unstructured data processing pipeline
-- Machine learning analytics module
-- Insight integration back into the operational database
+The project includes:
+- A relational OLTP / ODS schema
+- Unstructured text ingestion
+- A data-driven analytics / ML pipeline
+- Insight persistence back into the database
+- A backend API for workflow consumption
 
-The architecture enables seamless data flow from user interaction to analytics
-and back to the application layer.
+---
 
-## Technology Stack
-- **Frontend:** Web-based user interface
-- **Backend:** Application server with database connectivity
-- **Database:** Relational OLTP/ODS database
-- **Analytics / ML:** Data-driven module for processing unstructured data
-- **ORM:** Object-Relational Mapping framework for database interaction
+## Project Structure
 
-## End-to-End Workflow
-1. A user interacts with the frontend and submits a request.
-2. The application layer persists the request in the OLTP/ODS database.
-3. Unstructured data associated with the request is processed by the
-   data-driven analytics module.
-4. A machine learning model generates insights (e.g., scores or recommendations).
-5. The generated insights are written back to the OLTP/ODS database.
-6. The application retrieves the updated data and presents results to the user.
+```
+backend/
+  app.py               FastAPI backend application
+  init_db.py           Database initialization script
+  requirements.txt     Python dependencies
 
-## Data-Driven Program Module
-The data-driven program module processes unstructured data and applies
-machine learning techniques to generate actionable insights. The module
-supports re-processing and retraining when new data becomes available,
-ensuring that insights remain up to date.
+ml_module/
+  run_pipeline.py      Data-driven ML pipeline
 
-## Repository Structure
-- `frontend/` – User interface components
-- `backend/` – Application logic and database connectivity
-- `ml_module/` – Data-driven analytics and machine learning module
-- `sql/` – Database schema and related scripts
-- `diagrams/` – Architecture and workflow diagrams
-- `screenshots/` – Application execution and result screenshots
+sql/
+  schema.sql           Relational OLTP / ODS schema
+  seed.sql             Seed data for demo
+
+screenshots/
+  01_db_init.png
+  02_ml_pipeline.png
+  03_recommendations_table.png
+  04_api_response.png
+
+diagrams/
+  (architecture diagrams, optional)
+```
+
+---
 
 ## How to Run (Local)
 
-### 1) Initialize the database (schema + seed)
+### Step 1 – Initialize the database (schema and seed data)
 ```bash
 python backend/init_db.py
+```
 
+### Step 2 – Install dependencies
+```bash
+python -m pip install -r backend/requirements.txt
+```
 
+### Step 3 – Run the data-driven analytics / ML pipeline
+```bash
+python ml_module/run_pipeline.py
+```
+
+### Step 4 – Start the backend API
+```bash
+python -m uvicorn backend.app:app --reload
+```
+
+### Step 5 – Verify the application
+
+Health check endpoint:
+```
+http://127.0.0.1:8000/health
+```
+
+Recommendations endpoint:
+```
+http://127.0.0.1:8000/recommendations?request_id=1
+```
+
+---
+
+## End-to-End Workflow Description
+
+1. Unstructured request text is stored in the `requests` table.
+2. Provider descriptions are stored in the `providers` table.
+3. The data-driven program module applies TF-IDF and cosine similarity to compute match scores.
+4. Generated insights are written back into the `recommendations` table in the ODS.
+5. The backend API retrieves recommendations and returns them to the client.
+
+---
+
+## Evidence (Screenshots)
+
+The following screenshots demonstrate successful end-to-end execution:
+
+- `screenshots/01_db_init.png`  
+  Database initialization completed successfully.
+
+- `screenshots/02_ml_pipeline.png`  
+  Data-driven ML pipeline executed and insights generated.
+
+- `screenshots/03_recommendations_table.png`  
+  Recommendations persisted back into the ODS database.
+
+- `screenshots/04_api_response.png`  
+  Backend API returns recommendations for a request.
+
+---
+
+## Notes
+
+The application is executed locally.  
+Screenshots are provided as evidence to demonstrate database updates, analytics execution, and workflow-based application behavior.
