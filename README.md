@@ -15,14 +15,41 @@ Part IV implements a **local, runnable end-to-end prototype** that demonstrates 
 ---
 
 ## End-to-End Architecture (Concept + Local Demo Mapping)
+
 ### Reference Architecture (target)
-![Reference Architecture](diagrams/reference_architecture.png)
 
-### Workflow Diagram
-![Workflow](diagrams/workflow.png)
+<p align="center">
+  <img src="diagrams/reference_architecture.png" width="600">
+</p>
 
-### Part III ML Pipeline (design)
-![ML Pipeline](part3/MLPipeline.png)
+
+### Workflow Diagram – Project Lifecycle
+
+<p align="center">
+  <a href="diagrams/workflow.png">
+    <img src="diagrams/workflow.png" width="900">
+  </a>
+</p>
+
+<p align="center">
+  <em>Click image to view full resolution</em>
+</p>
+
+
+
+
+### Part III – ML Pipeline (design)
+
+<p align="center">
+  <a href="part3/MLPipeline.png">
+    <img src="part3/MLPipeline.png" width="900">
+  </a>
+</p>
+
+<p align="center">
+  <em>Click image to view full resolution</em>
+</p>
+
 
 ---
 
