@@ -1,0 +1,9 @@
+# Python
+__pycache__/
+*.pyc
+
+# Local DB
+backend/app.db
+
+# Environment
+.env
