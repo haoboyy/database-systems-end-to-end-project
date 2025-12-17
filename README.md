@@ -1,12 +1,12 @@
-# Database Systems Final Project
-
+# Database Systems Final Project  
 ## End-to-End Data-Driven Database Application
 
 ---
 
 ## Overview
 
-This project is the final project for **CSCI-GA.2433 Database Systems** at **New York University (Courant Institute of Mathematical Sciences)**.
+This project is the final project for **CSCI-GA.2433 Database Systems** at  
+**New York University (Courant Institute of Mathematical Sciences)**.
 
 It implements an **end-to-end, data-driven database application** that integrates:
 
@@ -16,7 +16,9 @@ It implements an **end-to-end, data-driven database application** that integrate
 - Integration of analytics results back into the operational database
 - A workflow-based backend API for consumption
 
-The project demonstrates how insights derived from unstructured data can be processed by a data-driven program module and written back into an operational database to support business decision-making.
+The project demonstrates how insights derived from unstructured data are processed
+by a data-driven program module and written back into an operational database to
+support business decision-making.
 
 ---
 
@@ -24,16 +26,17 @@ The project demonstrates how insights derived from unstructured data can be proc
 
 The solution follows a layered, end-to-end architecture:
 
-- **User Interaction Layer** (Client / Provider UI)
-- **Application / API Layer** (workflow orchestration)
-- **OLTP / ODS Relational Database**
-- **Unstructured Data Processing Pipeline**
-- **Machine Learning Analytics Module**
-- **Insight Integration back into the Operational Database**
+- User Interaction Layer (Client / Provider UI)
+- Application / API Layer (workflow orchestration)
+- OLTP / ODS Relational Database
+- Unstructured Data Processing Pipeline
+- Machine Learning Analytics Module
+- Insight Integration back into the Operational Database
 
-This architecture enables seamless data flow from user interaction to analytics and back to the application layer.
+This architecture enables seamless data flow from user interaction to analytics
+and back to the application layer.
 
-Architecture diagrams and workflow illustrations are provided in the `diagrams/` directory.
+![Reference Architecture](diagrams/reference_architecture.png)
 
 ---
 
@@ -46,7 +49,7 @@ Architecture diagrams and workflow illustrations are provided in the `diagrams/`
 - **API Server:** Uvicorn
 - **ORM / DB Access:** Direct SQL (lightweight demo)
 
-> Note: Cloud-based components (Azure Data Lake, Databricks, Synapse, Azure ML)
+> **Note:** Cloud-based components (Azure Data Lake, Databricks, Synapse, Azure ML)
 > described in Parts I–III are implemented here as a **local runnable prototype**
 > to demonstrate equivalent end-to-end behavior.
 
@@ -54,12 +57,25 @@ Architecture diagrams and workflow illustrations are provided in the `diagrams/`
 
 ## End-to-End Workflow
 
-1. A user submits a project request.
-2. The application layer persists the request in the OLTP/ODS database.
-3. Unstructured request and provider text is processed by the data-driven ML module.
-4. A machine learning model computes similarity scores and recommendations.
-5. Generated insights are written back into the OLTP/ODS database.
-6. The backend API retrieves and exposes the enriched data to the application layer.
+The following diagram illustrates the workflow-based application lifecycle:
+
+![Workflow Diagram](diagrams/workflow.png)
+
+1. A user submits a project request  
+2. The application layer persists the request in the OLTP/ODS database  
+3. Unstructured request and provider text is processed by the data-driven ML module  
+4. A machine learning model computes similarity scores and recommendations  
+5. Generated insights are written back into the OLTP/ODS database  
+6. The backend API retrieves and exposes the enriched data to the application layer  
+
+---
+
+## Data-Driven Analytics & ML Pipeline
+
+Unstructured text (project descriptions, provider profiles, messages) is processed
+through a data-driven analytics pipeline:
+
+![ML Pipeline](part3/MLPipeline.png)
 
 ---
 
@@ -128,6 +144,12 @@ python -m pip install -r backend/requirements.txt
 python backend/init_db.py
 ```
 
+This step creates the local OLTP/ODS database:
+
+```
+backend/app.db
+```
+
 ---
 
 ### Step 4: Run the Data-Driven ML Pipeline
@@ -154,7 +176,19 @@ http://127.0.0.1:8000
 
 ### Step 6: Verify End-to-End Execution
 
-Screenshots demonstrating successful execution are available in `screenshots/`.
+The following screenshots demonstrate successful execution of the end-to-end system:
+
+#### Database Initialization
+![DB Init](screenshots/01_db_init.png)
+
+#### ML Pipeline Execution
+![ML Execution](screenshots/02_ml_pipeline.png)
+
+#### Recommendations Stored in Database
+![Recommendations Table](screenshots/03_recommendations_table.png)
+
+#### API Response Consuming Analytics Results
+![API Response](screenshots/04_api_response.png)
 
 ---
 
