@@ -51,3 +51,10 @@ ensuring that insights remain up to date.
 - `sql/` – Database schema and related scripts
 - `diagrams/` – Architecture and workflow diagrams
 - `screenshots/` – Application execution and result screenshots
+
+## How to Run (Local)
+
+### 1) Initialize the database (schema + seed)
+```bash
+python backend/init_db.py
+
